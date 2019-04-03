@@ -260,6 +260,7 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
     String data = ((Subscriber) o).getObject().toString();
     int portNum;
     String port = data.substring(data.length()-4,  data.length());
+    data = data.substring(0,data.length()-4);
     System.out.println("Hello uhsuibcyec" + port);
     portNum = Integer.parseInt(port);
     

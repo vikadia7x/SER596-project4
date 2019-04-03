@@ -64,7 +64,7 @@ class DataGenerator extends Observable implements Runnable {
 	  if(!createEmo.equals(this.emotionFromGUI)){
 		  powerOf = r.nextInt(Constants.RANGE_HIGH-Constants.RANGE_LOW) + Constants.RANGE_LOW;
 	  }
-	  double randomValue = rand.nextDouble()/Math.pow(10, powerOf);
+	  double randomValue = rand.nextDouble();
 	  return randomValue;
   }
 
