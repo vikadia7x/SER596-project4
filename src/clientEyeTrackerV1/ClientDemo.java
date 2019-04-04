@@ -99,12 +99,13 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 
 	    JPanel connectionButtons = new JPanel();
 	    connectionButtons.setBackground(Color.CYAN);
-	    connectionButtons.setLayout(new GridLayout(1,3));
+	    connectionButtons.setLayout(new GridLayout(1,2));
 	    
 	    JButton connectButton = new JButton("Connect");
 	    connectButton.addActionListener(this);
 	    connectionButtons.add(connectButton);
 	    
+	    /*
 	    JButton disconnectButton = new JButton("Disconnect");
 	    disconnectButton.addActionListener(new ActionListener() {
 		      @Override
@@ -114,6 +115,7 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 		    });
 	    	    
 	    connectionButtons.add(disconnectButton);
+	    */
 
 	      
 	    addWindowListener(new java.awt.event.WindowAdapter() {
@@ -144,16 +146,74 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 	    return panel;
 	    
 	  }
+  
+  private JPanel buttonPanel(String labelName) {
+	  
+	    JPanel label = new JPanel();
+	    label.setBackground(Color.lightGray);
+	    label.setLayout(new GridLayout(1,1));
+	    label.add(new JLabel(labelName),BorderLayout.CENTER);
+	    
+	  JPanel connectionButtons = new JPanel();
+	    connectionButtons.setBackground(Color.CYAN);
+	    connectionButtons.setLayout(new GridLayout(1,2));
+	    
+	    JButton disconnectButton = new JButton("Stop servers");
+	    disconnectButton.addActionListener(new ActionListener() {
+		      @Override
+		      public void actionPerformed(ActionEvent e) {
+		    	  close();
+	            }
+		    });
+	    	    
+	    connectionButtons.add(disconnectButton);
+	    
+	    JButton predictButton = new JButton("Predict");
+	    predictButton.addActionListener(new ActionListener() {
+		      @Override
+		      public void actionPerformed(ActionEvent e) {
+		    	  predict();
+	            }
 
+		    });
+	    	    
+	    connectionButtons.add(predictButton);
+	    
+	    JPanel panel = new JPanel();
+	    panel.setBackground(Color.blue);
+	    panel.setLayout(new GridLayout(2,1));
+	    panel.add(label,BorderLayout.NORTH);
+	    panel.add(connectionButtons, BorderLayout.AFTER_LAST_LINE);
+    
+	  return panel;
+	 
+  }
+  
+	private void predict() {
+		System.out.println("Calling the python module");
+		ProcessBuilder procBuild = new ProcessBuilder("python3","pad.py");
+		/*
+        try {
+			//Process p = procBuild.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		System.out.println("Python module called");
+		
+	}
+  
 	  private JPanel ClientPanel(){
 	    JPanel panel = new JPanel();
 	    panel.setBackground(Color.CYAN);
-	    panel.setLayout(new GridLayout(5,1));
+	    panel.setLayout(new GridLayout(6,1));
 	    panel.add(processPanel(" Face Simulator "),BorderLayout.NORTH);
 	    panel.add(processPanel(" Heart Simulator "),BorderLayout.AFTER_LAST_LINE);
 	    panel.add(processPanel(" BCI Simulator "),BorderLayout.AFTER_LAST_LINE);
 	    panel.add(processPanel(" Skin Simulator "),BorderLayout.AFTER_LAST_LINE);
 	    panel.add(processPanel(" Eye Simulator "),BorderLayout.AFTER_LAST_LINE);
+	    panel.add(buttonPanel("Stop and Predict"),BorderLayout.AFTER_LAST_LINE);
 	    return panel;
 	  }
 	  
