@@ -42,7 +42,7 @@ def make_predictions():
     # Time to compile the network
     classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
     
-    classifier.load_weights("/Users/adityavikram/git/SER594-project4/project4/model/weights-Test-CNN.h5")
+    classifier.load_weights("C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\model\\weights-Test-CNN.h5")
     
     test_data_scale = ImageDataGenerator(rescale = 1./255)
     
@@ -65,7 +65,7 @@ def make_predictions():
     
     train_data_scale = ImageDataGenerator(rescale = 1./255, shear_range = 0.2, zoom_range = 0.2, horizontal_flip = True)
     
-    train_set = train_data_scale.flow_from_directory('/Users/adityavikram/git/SER594-project4/project4/hci_plots/train_set',target_size = (64,64), batch_size = 32, class_mode = 'categorical')
+    train_set = train_data_scale.flow_from_directory('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\hci_plots\\train_set',target_size = (64,64), batch_size = 32, class_mode = 'categorical')
     
     labels = (train_set.class_indices)
     labels = dict((v,k) for k,v in labels.items())

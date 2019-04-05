@@ -9,14 +9,14 @@ import predict
 ##################### NEEDED: WRITE A LOGIC TO SAMPLE DATA ONLY FOR 2-3 S AND EXPORT IT TO final.csv ###########
 ##################### DONE: SAMPLE ENTIRE CSV AND EXPORT IT TO final.csv ##################################
 
-mydir = 'test_parent/test_plots/'
+mydir = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\test_parent\\test_plots'
 filelist = [ f for f in os.listdir(mydir) if f.endswith(".png") ]
 for f in filelist:
     os.remove(os.path.join(mydir, f))
 
 print("Exisiting files deleted")
 
-file = 'face.csv'
+file = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\sensor_data\\Positive\\face.csv'
 df = pd.read_csv(file)
 df = df.dropna()
 df = df.replace(0,np.nan)
@@ -26,10 +26,10 @@ df['P1'] = df['Agreement']+df['Concentrating']+(-1)*df['Disagreement']+df['Think
 df['A1'] = (-1)*df['Agreement']+(-1)*df['Concentrating']+df['Disagreement']+(-1)*df['Thinking']+df['Unsure']+df['Interested']
 df['D1'] = (-1)*df['Agreement']+df['Concentrating']+df['Disagreement']+df['Thinking']+(-1)*df['Unsure']+(-1)*df['Interested']
 header = ['timestamp','P1','A1','D1']
-df.to_csv('intermediate_csv/face_output.csv', columns = header, index = False )
+df.to_csv('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\face_output.csv', columns = header, index = False )
 print('level 1')
 
-file2 = 'brain.csv'
+file2 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\sensor_data\\Positive\\brain.csv'
 df2 = pd.read_csv(file2)
 df2 = df2.dropna()
 #df2 = df2.drop_duplicates()
@@ -40,11 +40,11 @@ df2['P2'] = (-1)*df2['Frustration']+df2['Engagement']+df2['Meditation']+df2['Sho
 df2['A2'] = df2['Frustration']+df2['Engagement']+(-1)*df2['Meditation']+df2['Short_term_engagement']+df2['Long_term_engagement']
 df2['D2'] = df2['Frustration']+df2['Engagement']+df2['Meditation']+df2['Short_term_engagement']+df2['Long_term_engagement']
 header = ['timestamp','P2','A2','D2']
-df2.to_csv('intermediate_csv/bci_output.csv', columns = header, index=False)
+df2.to_csv('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\bci_output.csv', columns = header, index=False)
 print('level 2')
 
-file3 = 'intermediate_csv/face_output.csv'
-file4 = 'intermediate_csv/bci_output.csv'
+file3 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\face_output.csv'
+file4 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\bci_output.csv'
 df3 = pd.read_csv(file3)
 df4 = pd.read_csv(file4)
 
@@ -61,7 +61,7 @@ df5['t_sec'] = df5['timestamp'].str[14:19]
 df5['t_sec'] = df5['t_sec'].str.replace(':','')
 #print(df5.t_sec.head(100))
 header = ['timestamp','t_sec','P','A','D']
-df5.to_csv('intermediate_csv/final.csv', columns = header, index=False)
+df5.to_csv('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\final.csv', columns = header, index=False)
 Shape = df5.shape
 i = 0
 j = i+1
@@ -71,6 +71,7 @@ z1 = []
 print(Shape[0])
 
 while i < (Shape[0])-2:
+#while i<1000:
     if df5.at[i,'t_sec'] == df5.at[j,'t_sec']:
         x1.append(df5.at[i,'P'])
         y1.append(df5.at[i,'A'])
@@ -92,7 +93,7 @@ while i < (Shape[0])-2:
         ax.set_xticklabels([])
         ax.set_zticklabels([])
         ax.scatter(x1,y1,z1)
-        plt.savefig('test_parent/test_plots/PAD-'+str(df5.at[i,'t_sec']))
+        plt.savefig('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\test_parent\\test_plots\\PAD-'+str(df5.at[i,'t_sec']))
         plt.close(fig)
         x1 = []
         y1 = []

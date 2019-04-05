@@ -3,6 +3,7 @@ package clientEyeTrackerV1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -189,18 +190,37 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 	 
   }
   
-	private void predict() {
+  private void predict() {/*
 		System.out.println("Calling the python module");
 		ProcessBuilder procBuild = new ProcessBuilder("python3","pad.py");
 		/*
-        try {
+      try {
 			//Process p = procBuild.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		*/
+		String pythonScriptPath = "C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\pad_script.py";
+		String[] cmd = new String[2];
+		cmd[0] = "python"; // check version of installed python: python -V
+		cmd[1] = pythonScriptPath;
 		System.out.println("Python module called");
+		// create runtime to execute external command
+		try {
+			Runtime rt = Runtime.getRuntime();
+			Process pr = rt.exec(cmd);
+			// retrieve output from python script
+			BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			String line = "";
+			while((line = bfr.readLine()) != null) {
+			// display each output line form python script
+			System.out.println(line);}
+						
+		} catch (IOException e) {	
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
   
