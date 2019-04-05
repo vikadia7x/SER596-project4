@@ -33,13 +33,14 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
   private JTextArea heartTextArea = new JTextArea("");
   private JTextArea BCITextArea = new JTextArea("");
   private JTextArea skinTextArea = new JTextArea("");
-
+  private JTextArea predictionTextArea = new JTextArea("");
 
   static StringBuilder sb1 = new StringBuilder();
   static StringBuilder sb2 = new StringBuilder();
   static StringBuilder sb3 = new StringBuilder();
    
   private JButton buttonConnect = new JButton("connect");
+  private JButton predictButton = new JButton("Predict");
   
   private JTextField portInputFace = new JTextField("9999");
   private JTextField portInputHeart = new JTextField("9999");
@@ -53,6 +54,9 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
   private JTextField ipInputBCI = new JTextField("localhost");
   private JTextField ipInputSkin = new JTextField("localhost");
   private JTextField ipInputEye = new JTextField("localhost");
+  
+
+  private JTabbedPane tabbedPane = new JTabbedPane();
   
   
   private JPanel processPanel(String labelName) {
@@ -169,11 +173,12 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 	    	    
 	    connectionButtons.add(disconnectButton);
 	    
-	    JButton predictButton = new JButton("Predict");
+	    //JButton predictButton = new JButton("Predict");
 	    predictButton.addActionListener(new ActionListener() {
 		      @Override
 		      public void actionPerformed(ActionEvent e) {
 		    	  predict();
+		    	  tabbedPane.setSelectedIndex(6);
 	            }
 
 		    });
@@ -214,8 +219,10 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 			BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			String line = "";
 			while((line = bfr.readLine()) != null) {
-			// display each output line form python script
-			System.out.println(line);}
+				// display each output line form python script
+				System.out.println(line);
+				predictionTextArea.append(line + "\n" );
+				}
 						
 		} catch (IOException e) {	
 			// TODO Auto-generated catch block
@@ -262,14 +269,13 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 //    subscriber[4] = new Subscriber("localhost", 1598);
     
     getContentPane().setLayout(new GridLayout(1,2));
-    JTabbedPane tabbedPane = new JTabbedPane();
    tabbedPane.addTab("Settings", null, ClientPanel(), "Important Panel");
    addIt(tabbedPane, "Face Simulator", faceTextArea );
    addIt(tabbedPane, "Heart Simulator", heartTextArea);
    addIt(tabbedPane, "Brain Simulator", BCITextArea);
    addIt(tabbedPane, "Skin Simulator", skinTextArea);
    addIt(tabbedPane, "Eye Simulator", eyeTextArea);
-   
+   addIt(tabbedPane, "Prediction", predictionTextArea); 
    
    getContentPane().add(tabbedPane);
 
@@ -281,6 +287,7 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
         System.exit(0);
       }
     });
+      
     setSize(800,800);
     setVisible(true);
     

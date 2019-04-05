@@ -11,7 +11,7 @@ from tkinter import *
 
 
 def make_predictions():
-    print("Hello World")
+    #print("Hello World")
     pred_dir = 'test_parent'
     classifier = Sequential()
     classifier = Sequential()

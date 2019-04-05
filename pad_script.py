@@ -14,7 +14,7 @@ filelist = [ f for f in os.listdir(mydir) if f.endswith(".png") ]
 for f in filelist:
     os.remove(os.path.join(mydir, f))
 
-print("Exisiting files deleted")
+#print("Exisiting files deleted")
 
 file = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\sensor_data\\Positive\\face.csv'
 df = pd.read_csv(file)
@@ -27,7 +27,7 @@ df['A1'] = (-1)*df['Agreement']+(-1)*df['Concentrating']+df['Disagreement']+(-1)
 df['D1'] = (-1)*df['Agreement']+df['Concentrating']+df['Disagreement']+df['Thinking']+(-1)*df['Unsure']+(-1)*df['Interested']
 header = ['timestamp','P1','A1','D1']
 df.to_csv('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\face_output.csv', columns = header, index = False )
-print('level 1')
+#print('level 1')
 
 file2 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\sensor_data\\Positive\\brain.csv'
 df2 = pd.read_csv(file2)
@@ -41,7 +41,7 @@ df2['A2'] = df2['Frustration']+df2['Engagement']+(-1)*df2['Meditation']+df2['Sho
 df2['D2'] = df2['Frustration']+df2['Engagement']+df2['Meditation']+df2['Short_term_engagement']+df2['Long_term_engagement']
 header = ['timestamp','P2','A2','D2']
 df2.to_csv('C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\bci_output.csv', columns = header, index=False)
-print('level 2')
+#print('level 2')
 
 file3 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\face_output.csv'
 file4 = 'C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\intermediate_csv\\bci_output.csv'
@@ -68,7 +68,7 @@ j = i+1
 x1 = []
 y1 = []
 z1 = []
-print(Shape[0])
+#print(Shape[0])
 
 while i < (Shape[0])-2:
 #while i<1000:
@@ -76,7 +76,7 @@ while i < (Shape[0])-2:
         x1.append(df5.at[i,'P'])
         y1.append(df5.at[i,'A'])
         z1.append(df5.at[i,'D'])
-        print(i,j,"if")
+        #print(i,j,"if")
 
 
     elif df5.at[i,'t_sec'] != df5.at[j,'t_sec'] or i == (Shape[0]) :
@@ -98,12 +98,12 @@ while i < (Shape[0])-2:
         x1 = []
         y1 = []
         z1 = []
-        print(i,j,"else")
+        #print(i,j,"else")
     j = j+1
     i = i+1
 
 
-print('level 5')
+#print('level 5')
 
 #####Calling predict.py#########
 
