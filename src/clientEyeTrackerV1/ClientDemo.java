@@ -206,7 +206,7 @@ public class ClientDemo extends JFrame implements Observer, ActionListener {
 			e.printStackTrace();
 		}
 		*/
-		String pythonScriptPath = "C:\\Users\\karti\\Desktop\\pad_new\\SER596-project4\\pad_script.py";
+		String pythonScriptPath = "./pad_script.py";
 		String[] cmd = new String[2];
 		cmd[0] = "python"; // check version of installed python: python -V
 		cmd[1] = pythonScriptPath;
