@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class Gui extends JPanel implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 
 private static Model model;
   

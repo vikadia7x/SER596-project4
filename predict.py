@@ -7,12 +7,13 @@ from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 from keras.layers.normalization import BatchNormalization
 from keras.models import Sequential
-from tkinter import *
+import os
 
 
 def make_predictions():
     #print("Hello World")
     pred_dir = 'test_parent'
+    final_dir = './test_parent/test_plots'
     classifier = Sequential()
     classifier = Sequential()
     # First Convolution Layer and Pooling Layer
@@ -55,13 +56,17 @@ def make_predictions():
         shuffle=False
     ) 
     
+    a = [f for f in os.listdir(final_dir) if os.path.isfile(os.path.join(final_dir, f))]
+    #print(len(a))
+    total_images = len(a)-1
+
     test_generator.reset()
     
-    pred=classifier.predict_generator(test_generator,verbose=1,steps=306/32)
-    print(pred)
+    pred=classifier.predict_generator(test_generator,verbose=1,steps=total_images/32)
+    #print(pred)
     
     predicted_class_indices=np.argmax(pred,axis = 1)
-    print(predicted_class_indices)
+    #print(predicted_class_indices)
     
     train_data_scale = ImageDataGenerator(rescale = 1./255, shear_range = 0.2, zoom_range = 0.2, horizontal_flip = True)
     
@@ -71,20 +76,10 @@ def make_predictions():
     labels = dict((v,k) for k,v in labels.items())
     predictions = [labels[k] for k in predicted_class_indices]
     
-    print(predictions,labels)
-    #create_gui(predictions,labels)
-
-def create_gui(predictions,labels):
-    window = Tk()
-    window.geometry('600x600')
- 
-    window.title("Welcome to Prediction app")
- 
-    #predictions=['something','one thing','another']
-    for i in range(len(predictions)):
-        exec('Label%d=Label(predictions,text="%s")\nLabel%d.pack()' % (i,predictions[i],i))
-    window.mainloop()
-    
+    j=0
+    for i in predictions:
+        print("Prediction for image number "+str(j)+" is: "+str(i))
+        j+=1
 
 if __name__ == "__main__":
     make_predictions()
