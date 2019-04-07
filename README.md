@@ -11,7 +11,8 @@ is written in Python
 
 Software tool: Eclipse
 Necessary Python modules: pandas, matplotlib, mpl_toolkits, numpy, keras, Pillow
-Command to install modules: pip install <module name>
+
+Command to install modules: pip install "module name"
 
 
 # How to run
