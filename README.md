@@ -10,6 +10,7 @@ is written in Python
 # Dependencies
 
 Software tool: Eclipse
+
 Necessary Python modules: pandas, matplotlib, mpl_toolkits, numpy, keras, Pillow
 
 Command to install modules: pip install "module name"
