@@ -29,4 +29,5 @@ Command to install modules: pip install "module name"
 9) Repeat step 6 to connect to all three servers.
 10) Wait for as long as you desire depending upon the amount of data you want to work with and hit "Stop servers".
 11) You can switch tabs on client GUI to check the raw data.
-12) Click on Predict and wait till the Prediction tab opens up automatically
+12) Click on Predict and wait till the Prediction tab opens up automatically.
+13) Step 12 could take longer time to complete depending upon computer's processing speed.
